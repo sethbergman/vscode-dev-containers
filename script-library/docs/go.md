@@ -1,3 +1,9 @@
+**IMPORTANT NOTE: We're starting to migrate contents of this repo to the [devcontainers org](https://github.com/devcontainers), as part of the work on the [open dev container specification](https://containers.dev).**
+
+**We've currently migrated the `go` Feature to [devcontainers/features/src/go](https://github.com/devcontainers/features/tree/main/src/go).**
+
+**For more details, you can review the [announcement issue](https://github.com/microsoft/vscode-dev-containers/issues/1589).**
+
 # Go (golang) Install Script
 
 *Installs Go and common Go utilities. Auto-detects latest version and installs needed dependencies.*
@@ -24,7 +30,7 @@ Or as a feature:
 
 |Argument|Feature option|Default|Description|
 |--------|--------------|-------|-----------|
-|Go version|`version` | `latest`| Version of Go to install. Use `latest` to install the latest released version. Partial version numbers are accepted (e.g. `1.17`).|
+|Go version|`version` | `latest`| Version of Go to install. Use `latest` to install the latest released version. Partial version numbers are accepted (e.g. `1.19`).|
 |GOROOT| | `/usr/local/go`| Location to install Go. |
 |GOPATH| | `/go`| Location to use as the `GOPATH`. Tools are installed under `${GOPATH}/bin` |
 |Non-root user| | `automatic`| Specifies a user in the container other than root. A value of `automatic` will cause the script to check for a user called `vscode`, then `node`, `codespace`, and finally a user with a UID of `1000` before falling back to `root`. |

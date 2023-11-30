@@ -7,7 +7,6 @@
 	"githubRepoName": "microsoft/vscode-dev-containers",
 	"containersPathInRepo": "containers",
 	"historyFolderName": "history",
-	"repoContainersToBuildPath": "repository-containers/images",
 	"scriptLibraryPathInRepo": "script-library",
 	"scriptLibraryFolderNameInDefinition": "library-scripts",
 	"historyUrlPrefix": "https://github.com/microsoft/vscode-dev-containers/tree/main/containers/",
@@ -28,11 +27,7 @@
 		"devcontainer-collection.json"
 	],
 
-	"needsDedicatedPage": [ 
-		"codespaces-linux",
-		"php",
-		"python-3"
-	],
+	"needsDedicatedPage": [],
 
 	"flattenBaseImage": [],
 
@@ -40,8 +35,10 @@
 		"https://dl.yarnpkg.com/debian": "https://dl.yarnpkg.com/debian/pubkey.gpg",
 		"https://packages.microsoft.com/repos/microsoft-debian-stretch-prod": "https://packages.microsoft.com/keys/microsoft.asc",
 		"https://packages.microsoft.com/repos/microsoft-debian-buster-prod": "https://packages.microsoft.com/keys/microsoft.asc",
+		"https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod": "https://packages.microsoft.com/keys/microsoft.asc",
 		"https://packages.microsoft.com/repos/microsoft-ubuntu-focal-prod": "https://packages.microsoft.com/keys/microsoft.asc",
 		"https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod": "https://packages.microsoft.com/keys/microsoft.asc",
+		"https://packages.microsoft.com/repos/microsoft-ubuntu-jammy-prod": "https://packages.microsoft.com/keys/microsoft.asc",
 		"https://packages.microsoft.com/repos/azure-cli": "https://packages.microsoft.com/keys/microsoft.asc",
 		"http://archive.ubuntu.com/ubuntu": "http://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg",
 		"http://security.ubuntu.com/ubuntu": "http://security.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg",

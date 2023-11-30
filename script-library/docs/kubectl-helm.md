@@ -1,3 +1,9 @@
+**IMPORTANT NOTE: We're starting to migrate contents of this repo to the [devcontainers org](https://github.com/devcontainers), as part of the work on the [open dev container specification](https://containers.dev).**
+
+**We've currently migrated the `kubectl-helm-minikube` Feature to [devcontainers/features/src/kubectl-helm-minikube](https://github.com/devcontainers/features/tree/main/src/kubectl-helm-minikube).**
+
+**For more details, you can review the [announcement issue](https://github.com/microsoft/vscode-dev-containers/issues/1589).**
+
 # Kubectl, Helm, and Minikube Install Script
 
 *Installs latest version of kubectl, Helm, and optionally minikube. Auto-detects latest versions and installs needed dependencies.*
@@ -35,6 +41,19 @@ Or as a feature:
 |Helm SHA256| | `automatic`| SHA256 checksum to use to verify the Helm download. `automatic` will both acquire the checksum and do a signature verification of it. |
 |minikube SHA256| | `automatic`| SHA256 checksum to use to verify the minikube download. `automatic` will download the checksum. |
 |Non-root user| | `automatic`| Specifies a user in the container other than root that will be using the desktop. A value of `automatic` will cause the script to check for a user called `vscode`, then `node`, `codespace`, and finally a user with a UID of `1000` before falling back to `root`. |
+
+## A note on Ingress and port forwarding
+
+When configuring [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) for your Kubernetes cluster, note that by default Kubernetes will bind to a specific interface's IP rather than localhost or all interfaces. This is why you need to use the Kubernetes Node's IP when connecting - even if there's only one Node as in the case of Minikube. Port forwarding in Remote - Containers will allow you to specify `<ip>:<port>` in either the `forwardPorts` property or through the port forwarding UI in VS Code.
+
+However, GitHub Codespaces does not yet support this capability, so you'll need to use `kubectl` to forward the port to localhost. This adds minimal overhead since everything is on the same machine. E.g.:
+
+```bash
+minikube start
+minikube addons enable ingress
+# Run this to forward to localhost in the background
+nohup kubectl port-forward --pod-running-timeout=24h -n ingress-nginx service/ingress-nginx-controller :80 &
+```
 
 ## Usage
 

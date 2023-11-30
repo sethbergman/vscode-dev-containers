@@ -1,6 +1,6 @@
-# [Choice] Node.js version (use -bullseye variants on local arm64/Apple Silicon): 16, 14, 12, 16-bullseye, 14-bullseye, 12-bullseye, 16-buster, 14-buster, 12-buster
-ARG VARIANT=16-bullseye
-FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:${VARIANT}
+# [Choice] Node.js version (use -bullseye variants on local arm64/Apple Silicon): 18, 16, 14, 18-bullseye, 16-bullseye, 14-bullseye, 18-buster, 16-buster, 14-buster
+ARG VARIANT=${templateOption:imageVariant}
+FROM mcr.microsoft.com/devcontainers/javascript-node:${VARIANT}
 USER root
 RUN apt-get update
 RUN apt-get install libsecret-1-dev -y

@@ -1,3 +1,5 @@
+**IMPORTANT NOTE: This Template is deprecated and is no longer supported.**
+
 # Ruby on Rails (Community)
 
 ## Summary
@@ -41,7 +43,7 @@ The environment variable's value is a comma-separated list of allowed domains, a
 ```dockerfile
 # Default value to allow debug server to serve content over GitHub Codespace's port forwarding service
 # The value is a comma-separated list of allowed domains
-ENV RAILS_DEVELOPMENT_HOSTS=".githubpreview.dev <, YOUR_OTHER_ALLOWED_DOMAIN(S), ...>"
+ENV RAILS_DEVELOPMENT_HOSTS=".githubpreview.dev, .app.github.dev <, YOUR_OTHER_ALLOWED_DOMAIN(S), ...>"
 ```
 
 ### Adding the definition to your folder

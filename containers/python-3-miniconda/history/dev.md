@@ -4,7 +4,7 @@
 
 **Source release/branch:** [main](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/python-3-miniconda)
 
-**Digest:** sha256:d3f49f413d64e0ce122d3d43a3d4e44428234a78037c5383b7abf61f15cbb525
+**Digest:** sha256:2452027f832a9f783aaf722c6c0c1a7eb847fcb86e89cb7e227ec57380e239f1
 
 **Tags:**
 ```
@@ -23,36 +23,36 @@ mcr.microsoft.com/vscode/devcontainers/miniconda:dev-3
 
 | Language / runtime | Version | Path |
 |--------------------|---------|------|
-| [Python](https://www.python.org/) | 3.9.5 | /opt/conda |
+| [Python](https://www.python.org/) | 3.9.12 | /opt/conda |
 
 **Tools installed using git**
 
 | Tool | Commit | Path |
 |------|--------|------|
-| [Oh My Zsh!](https://github.com/ohmyzsh/ohmyzsh) | e9348575371aa8ec8811356d997942559c026d07 | /home/vscode/.oh-my-zsh |
+| [Oh My Zsh!](https://github.com/ohmyzsh/ohmyzsh) | 4c82a2eedf0c43d47601ffa8b0303ed1326fab8f | /home/vscode/.oh-my-zsh |
 | [nvm](https://github.com/nvm-sh/nvm.git) | 3fea5493a431ac64470d4230d4b51438cf213bd1 | /usr/local/share/nvm |
 
 **Pip / pipx installed tools and packages**
 
 | Tool / package | Version |
 |----------------|---------|
-| pylint | 2.13.5 |
-| flake8 | 4.0.1 |
-| autopep8 | 1.6.0 |
-| black | 22.3.0 |
+| pylint | 2.14.5 |
+| flake8 | 5.0.4 |
+| autopep8 | 1.7.0 |
+| black | 22.6.0 |
 | yapf | 0.32.0 |
-| mypy | 0.942 |
+| mypy | 0.971 |
 | pydocstyle | 6.1.1 |
-| pycodestyle | 2.8.0 |
+| pycodestyle | 2.9.1 |
 | bandit | 1.7.4 |
-| virtualenv | 20.14.1 |
-| pipx | 1.0.0 |
+| virtualenv | 20.16.3 |
+| pipx | 1.1.0 |
 
 **Other tools and utilities**
 
 | Tool | Version | Path |
 |------|---------|------|
-| [conda](https://github.com/conda/conda) | 4.10.3 | /opt/conda |
+| [conda](https://github.com/conda/conda) | 4.12.0 | /opt/conda |
 
 **Additional linux tools and packages**
 
@@ -61,10 +61,10 @@ mcr.microsoft.com/vscode/devcontainers/miniconda:dev-3
 | apt-transport-https | 2.2.4 |
 | apt-utils | 2.2.4 |
 | ca-certificates | 20210119 |
-| curl | 7.74.0-1.3+deb11u1 |
+| curl | 7.74.0-1.3+deb11u2 |
 | dialog | 1.3-20201126-1 |
 | git | 1:2.30.2-1 |
-| gnupg2 | 2.2.27-2+deb11u1 |
+| gnupg2 | 2.2.27-2+deb11u2 |
 | htop | 3.0.5-7 |
 | iproute2 | 5.10.0-4 |
 | jq | 1.6-2.1 |
@@ -74,7 +74,7 @@ mcr.microsoft.com/vscode/devcontainers/miniconda:dev-3
 | libicu67 | 67.1-7 |
 | libkrb5-3 | 1.18.3-6+deb11u1 |
 | liblttng-ust0 | 2.12.1-1 |
-| libssl1.1 | 1.1.1n-0+deb11u1 |
+| libssl1.1 | 1.1.1n-0+deb11u3 |
 | libstdc++6 | 10.2.1-6 |
 | locales | 2.31-13+deb11u3 |
 | lsb-release | 11.1.0 |
@@ -84,19 +84,19 @@ mcr.microsoft.com/vscode/devcontainers/miniconda:dev-3
 | manpages-dev | 5.10-1 |
 | manpages-posix | 2017a-2 |
 | manpages-posix-dev | 2017a-2 |
-| nano | 5.4-2 |
+| nano | 5.4-2+deb11u1 |
 | ncdu | 1.15.1-1 |
 | net-tools | 1.60+git20181103.0eebece-1 |
-| openssh-client | 1:8.4p1-5 |
+| openssh-client | 1:8.4p1-5+deb11u1 |
 | procps | 2:3.3.17-5 |
 | psmisc | 23.4-2 |
 | rsync | 3.2.3-4+deb11u1 |
 | strace | 5.10-1 |
 | sudo | 1.9.5p2-3 |
-| unzip | 6.0-26 |
+| unzip | 6.0-26+deb11u1 |
 | vim-tiny | 2:8.2.2434-3+deb11u1 |
 | wget | 1.21-1+deb11u1 |
-| yarn | 1.22.18-1 |
+| yarn | 1.22.19-1 |
 | zip | 3.0-12 |
 | zlib1g | 1:1.2.11.dfsg-2+deb11u1 |
 | zsh | 5.8-6+deb11u1 |

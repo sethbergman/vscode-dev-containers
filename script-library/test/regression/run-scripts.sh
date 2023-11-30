@@ -42,6 +42,22 @@ run_script()
     echo "**** Done! ****"
 }
 
+get_common_setting() {
+    # if [ "${common_settings_file_loaded}" != "true" ]; then
+    #     curl -sfL "https://aka.ms/vscode-dev-containers/script-library/settings.env" 2>/dev/null -o /tmp/vsdc-settings.env || echo "Could not download settings file. Skipping."
+    #     common_settings_file_loaded=true
+    # fi
+    cp  ${SCRIPT_DIR}/shared/settings.env  /tmp/vsdc-settings.env
+
+    if [ -f "/tmp/vsdc-settings.env" ]; then
+        local multi_line=""
+        if [ "$2" = "true" ]; then multi_line="-z"; fi
+        local result="$(grep ${multi_line} -oP "$1=\"?\K[^\"]+" /tmp/vsdc-settings.env | tr -d '\0')"
+        if [ ! -z "${result}" ]; then declare -g $1="${result}"; fi
+    fi
+    echo "$1=${!1}"
+}
+
 # Determine distro scripts to use
 . /etc/os-release
 architecture="$(uname -m)"
@@ -79,39 +95,57 @@ fi
 
 # Debian/Ubuntu specific tests
 if [ "${DISTRO}" = "debian" ]; then
+
+    # dotnet
+    get_common_setting DOTNET_VERSION_CODENAMES_REQUIRE_OLDER_LIBSSL_1
+    if [[ "${DOTNET_VERSION_CODENAMES_REQUIRE_OLDER_LIBSSL_1}" = *"${VERSION_CODENAME}"* ]]; then
+        run_script dotnet "3.1 true ${USERNAME} false /opt/dotnet dotnet"
+
+    else
+        run_script dotnet "6.0 true ${USERNAME} false /opt/dotnet dotnet"
+    fi
+
+    run_script ruby "false" "3.1.2"
+    run_script python "3.10 /opt/python /opt/python-tools ${USERNAME} false false"
     run_script awscli
     run_script azcli
     run_script fish "false ${USERNAME}"
     run_script git-from-src "latest true"
     run_script git-lfs "" "2.13.3"
     run_script github
-    run_script go "1.17 /opt/go /go ${USERNAME} false"
+    run_script go "1.19 /opt/go /go ${USERNAME} false"
     run_script gradle "4.4 /usr/local/sdkman1 ${USERNAME} false"
     run_script kubectl-helm "latest latest latest"
     run_script maven "3.6.3 /usr/local/sdkman3 ${USERNAME} false"
     run_script node "/usr/local/share/nvm 14 ${USERNAME}"
-    run_script python "3.4.10 /opt/python /opt/python-tools ${USERNAME} false false"
-    run_script ruby "${USERNAME} false" "2.7.3"
     run_script rust "/opt/rust/cargo /opt/rust/rustup ${USERNAME} false"
+    run_script rust "/opt/rust/cargo /opt/rust/rustup ${USERNAME} false false 1.63.0"
     run_script terraform "0.15.0 0.12.1"
     run_script sshd "2223 ${USERNAME} true random"
     run_script desktop-lite "${USERNAME} changeme false"
-    docker_version="20.10"
-    if [ "${VERSION_CODENAME}" = "stretch" ]; then
-        docker_version="19.03"
+
+    # docker-in-docker
+    get_common_setting DOCKER_MOBY_ARCHIVE_VERSION_CODENAMES
+    if [[ "${DOCKER_MOBY_ARCHIVE_VERSION_CODENAMES}" != *"${VERSION_CODENAME}"* ]]; then
+        # Do not use Moby
+        echo 'testing moby: false'
+        run_script docker-in-docker "false ${USERNAME} false latest v2"
+    else
+        # Use Moby
+         echo 'testing moby: true'
+        run_script docker-in-docker "false ${USERNAME} true latest v2"
     fi
-    run_script docker-in-docker "false ${USERNAME} false ${docker_version} v2"
+
     run_script powershell
-    run_script fish
     if [ "${architecture}" = "amd64" ] || [ "${architecture}" = "x86_64" ] || [ "${architecture}" = "arm64" ] || [ "${architecture}" = "aarch64" ]; then
         run_script java "13.0.2.j9-adpt /usr/local/sdkman2 ${USERNAME} false"
     fi
     if [ "${architecture}" = "amd64" ] || [ "${architecture}" = "x86_64" ]; then
         run_script homebrew "${USERNAME} false true /home/${USERNAME}/linuxbrew"
     fi
-    run_script dotnet "3.1 true ${USERNAME} false /opt/dotnet dotnet"
 fi
 
+# TODO: Most of this script does not execute since 'docker-in-docker' is run above
 if [ "${DISTRO}" != "alpine" ]; then
     run_script docker "true /var/run/docker-host.sock /var/run/docker.sock ${USERNAME}"
 fi
